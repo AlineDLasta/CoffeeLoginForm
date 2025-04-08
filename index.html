@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login form</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo"><i class='bx bxs-coffee-alt'></i>coffee</a>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Menu</a>
+            <a href="#">Reviews</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <section class="home">
+        <div class="content">
+            <h2>Welcome to our cafe</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem odit quisquam aliquam voluptatem cupiditate ullam quaerat doloribus mollitia? Fugit iste neque temporibus maxime quidem magni sapiente hic corporis distinctio repellat?</p>
+            <a href="#">Get started</a>
+        </div>
+
+        <div class="login-box">
+            <h2>Member login</h2>
+            <form id="form">
+                <div class="input-box">
+                    <span><i class='bx bxs-envelope'></i></span>
+                    <input type="gmail" placeholder="Enter your email" id="email">
+                    <p id="emailError" class="errorMessage"></p>
+                </div>
+                <div class="input-box">
+                    <span><i class='bx bxs-lock'></i></span>
+                    <input type="password" placeholder="Enter your password" id="password">
+                    <p id="passwordError" class="errorMessage"></p>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Remember me </label>
+                    <a href="#" id="forgotPassword">Forgot your password?</a>
+                </div>
+
+                <div id="passwordResetContainer" class="hidden">
+                    <input type="text" id="passwordResetEmail" placeholder="Enter your email">
+                    <button type="button" id="passwordResetSubmit">Send password reset email</button>
+                    <p id="passwordResetMessage"></p>
+                </div>
+
+                <button type="submit" class="but">Login</button>
+                <p id="successMessage" class="successMessage"></p>
+                <div class="register-link">
+                    <p>Not a member? <a href="#">Sign up now</a></p>
+                </div>
+            </form>
+        </div>
+    </section> 
+
+    <script src="script.js"></script>
+</body>
+</html>
