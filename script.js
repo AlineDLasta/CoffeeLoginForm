@@ -66,6 +66,8 @@ function validatePassword(inputElement, errorElement) {
 
 // Manipula o envio do formulário
 function handleSubmit(event) {
+    event.preventDefault();
+
     const isEmailValid = validateEmail(emailInput, emailError);
     const isPasswordValid = validatePassword(passwordInput, passwordError);
 
@@ -102,6 +104,8 @@ function handleSubmit(event) {
 }
 
 function handleRegister(event) {
+    event.preventDefault();
+    
     const isEmailValid = validateEmail(emailRegister, emailRegisterError);
     const isPasswordValid = validatePassword(passwordRegister, passwordRegisterError);
     const isNameValid = validateName();
