@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <header class="header">
         <a href="#" class="logo"><i class='bx bxs-coffee-alt'></i>coffee</a>
@@ -19,19 +20,21 @@
         </nav>
     </header>
 
-    <section class="home">
+    <main class="home">
         <div class="content">
             <h2>Welcome to our cafe</h2>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem odit quisquam aliquam voluptatem cupiditate ullam quaerat doloribus mollitia? Fugit iste neque temporibus maxime quidem magni sapiente hic corporis distinctio repellat?</p>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem odit quisquam aliquam voluptatem
+                cupiditate ullam quaerat doloribus mollitia? Fugit iste neque temporibus maxime quidem magni sapiente
+                hic corporis distinctio repellat?</p>
             <a href="#">Get started</a>
         </div>
 
         <div class="login-box">
-            <h2>Member login</h2>
+            <h2>Login</h2>
             <form id="form">
                 <div class="input-box">
                     <span><i class='bx bxs-envelope'></i></span>
-                    <input type="gmail" placeholder="Enter your email" id="email">
+                    <input type="email" placeholder="Enter your email" id="email">
                     <p id="emailError" class="errorMessage"></p>
                 </div>
                 <div class="input-box">
@@ -53,11 +56,34 @@
                 <button type="submit" class="but">Login</button>
                 <p id="successMessage" class="successMessage"></p>
                 <div class="register-link">
-                    <p>Not a member? <a href="#">Sign up now</a></p>
+                    <p>Not a member? <a href="#" id="newAccount">Sign up now</a></p>
                 </div>
             </form>
-        </div>
-    </section> 
+
+            
+            <form id="formRegister" hidden>
+                <div class="input-box">
+                    <span><i class='bx bxs-user'></i></span>
+                    <input type="text" placeholder="Enter your name" id="userRegister">
+                    <p id="nameRegisterError" class="errorMessage"></p>
+                </div>
+                <div class="input-box">
+                    <span><i class='bx bxs-envelope'></i></span>
+                    <input type="gmail" placeholder="Enter your email" id="emailRegister">
+                    <p id="emailRegisterError" class="errorMessage"></p>
+                </div>
+                <div class="input-box">
+                    <span><i class='bx bxs-lock'></i></span>
+                    <input type="password" placeholder="Enter your password" id="passwordRegister">
+                    <p id="passwordRegisterError" class="errorMessage"></p>
+                </div>
+                <button type="submit" class="but">Sign Up</button>
+                <p id="successRegisterMessage" class="successMessage"></p>
+                <div class="register-link">
+                    <p>Already have an account? <a href="#" id="backToLogin" >Log in</a></p>
+                </div>
+            </form>
+    </main>
 
     <script src="script.js"></script>
 </body>

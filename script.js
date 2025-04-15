@@ -1,4 +1,3 @@
-// Seleciona os elementos principais do DOM
 const emailInput = document.querySelector('#email');
 const passwordInput = document.querySelector('#password');
 const form = document.querySelector('#form');
@@ -10,59 +9,91 @@ const passwordResetContainer = document.querySelector('#passwordResetContainer')
 const passwordResetEmail = document.querySelector('#passwordResetEmail');
 const passwordResetSubmit = document.querySelector('#passwordResetSubmit');
 const passwordResetMessage = document.querySelector('#passwordResetMessage');
-
-// Expressão regular para validar o formato do e-mail
+const newAccount = document.querySelector('#newAccount');
+const formRegister = document.querySelector('#formRegister');
+const userRegister = document.querySelector('#userRegister');
+const emailRegister = document.querySelector('#emailRegister');
+const passwordRegister = document.querySelector('#passwordRegister');
+const emailRegisterError = document.querySelector('#emailRegisterError');
+const passwordRegisterError = document.querySelector('#passwordRegisterError');
+const successRegisterMessage = document.querySelector('#successRegisterMessage');
+const nameRegisterError = document.querySelector('#nameRegisterError');
 const regex = /^\S+@\S+\.\S+$/;
 
-// Evento de envio do formulário principal
+//Envio do formulário
 form.addEventListener('submit', handleSubmit);
+formRegister.addEventListener('submit', handleRegister);
 
-// Validação do campo de e-mail
-function validateEmail() {
-    const emailValue = emailInput.value;
-
-    if (emailValue === '') {
-        emailError.innerText = 'Please fill in the email field.';
-        return false;
-    } else if (!regex.test(emailValue)) {
-        emailError.innerText = 'Invalid email format.';
+function validateName(){
+    const nameValue = userRegister.value;
+    if (nameValue === ''){
+        nameRegisterError.innerText = 'Please fill in the field with your name.';
         return false;
     } else {
-        emailError.innerText = ''; // limpa o erro caso esteja tudo certo
+        nameRegisterError.innerText = '';
         return true;
     }
 }
 
-// Validação do campo de senha
-function validatePassword() {
-    const passwordValue = passwordInput.value;
-
-    if (passwordValue === '') {
-        passwordError.innerText = 'Please fill in the password field.';
+function validateEmail(inputElement, errorElement) {
+    const emailValue = inputElement.value;
+    if (emailValue === '') {
+        errorElement.innerText = 'Please fill in the email field.';
         return false;
-    } else if (passwordValue.length < 6) {
-        passwordError.innerText = 'Your password must be at least 6 digits long!';
+    } else if (!regex.test(emailValue)) {
+        errorElement.innerText = 'Invalid email format.';
         return false;
     } else {
-        passwordError.innerText = ''; // limpa o erro caso esteja tudo certo
+        errorElement.innerText = ''; // limpa o erro caso esteja tudo certo
+        return true;
+    }
+}
+
+function validatePassword(inputElement, errorElement) {
+    const passwordValue = inputElement.value;
+
+    if (passwordValue === '') {
+        errorElement.innerText = 'Please fill in the password field.';
+        return false;
+    } else if (passwordValue.length < 6) {
+        errorElement.innerText = 'Your password must be at least 6 digits long!';
+        return false;
+    } else {
+        errorElement.innerText = '';
         return true;
     }
 }
 
 // Manipula o envio do formulário
 function handleSubmit(event) {
-    const isEmailValid = validateEmail();
-    const isPasswordValid = validatePassword();
+    const isEmailValid = validateEmail(emailInput, emailError);
+    const isPasswordValid = validatePassword(passwordInput, passwordError);
 
     if (!isEmailValid || !isPasswordValid) {
-        event.preventDefault(); // impede envio se houver erro
-        successMessage.innerText = ''; // limpa mensagem de sucesso
+        event.preventDefault();
+        successMessage.innerText = '';
     } else {
-        event.preventDefault(); // impede envio para simular validação
-        successMessage.innerText = 'Form submitted successfully!';
-        successMessage.classList.add('showMessage');
+        const userText = localStorage.getItem('user');
+        successMessage.innerText = '';
 
-        // Remove a mensagem após 2 segundos
+        if (!userText){
+            successMessage.innerText = 'You dont have an account yet. Sign up first!';
+            successMessage.classList.add('showMessage');
+            successMessage.style.color = 'red';
+            return;
+        }
+
+        const userObj = JSON.parse(userText);
+        if (emailInput.value === userObj.email && passwordInput.value === userObj.password){
+            successMessage.innerText = 'Login successful!';
+            successMessage.classList.add('showMessage');
+            successMessage.style.color = 'green';
+        } else {
+            successMessage.innerText = 'Incorrect email or password.';
+            successMessage.classList.add('showMessage');
+            successMessage.style.color = 'red';
+        }
+
         setTimeout(() => {
             successMessage.classList.remove('showMessage');
             successMessage.innerText = '';
@@ -70,31 +101,59 @@ function handleSubmit(event) {
     }
 }
 
-// Mostra ou esconde o container de redefinição de senha
+function handleRegister(event) {
+    const isEmailValid = validateEmail(emailRegister, emailRegisterError);
+    const isPasswordValid = validatePassword(passwordRegister, passwordRegisterError);
+    const isNameValid = validateName();
+    if (!isEmailValid || !isPasswordValid || !isNameValid) {
+        event.preventDefault();
+        successRegisterMessage.innerText = '';
+    } else {
+        event.preventDefault();
+        successRegisterMessage.innerText = 'Registration form sent successfully!';
+        successRegisterMessage.classList.add('showMessage');
+
+        const user = {
+            name : userRegister.value,
+            email : emailRegister.value,
+            password: passwordRegister.value
+        };
+        const userJSON = JSON.stringify(user);
+        localStorage.setItem('user', userJSON);
+
+        setTimeout(() => {
+            successRegisterMessage.classList.remove('showMessage');
+            successRegisterMessage.innerText = '';
+        }, 2000);
+    } 
+}
+
+//Visibilidade do container de redefinição de senha
 forgotPassword.addEventListener('click', (event) => {
     event.preventDefault();
     passwordResetContainer.classList.toggle('hidden');
-    passwordResetMessage.innerText = ''; // limpa mensagem anterior
-    passwordResetEmail.value = ''; // limpa campo de email
+    passwordResetMessage.innerText = '';
+    passwordResetEmail.value = '';
 });
 
-// Lógica para reset de senha
 passwordResetSubmit.addEventListener('click', (event) => {
     const emailR = passwordResetEmail.value;
 
     if (emailR === '') {
         passwordResetMessage.innerText = 'Please fill in the email field.';
         passwordResetMessage.style.color = 'red';
+        passwordResetMessage.style.fontWeight = 'bold';
         return false;
     } else if (!regex.test(emailR)) {
         passwordResetMessage.innerText = 'Invalid email format.';
         passwordResetMessage.style.color = 'red';
+        passwordResetMessage.style.fontWeight = 'bold';
         return false;
     } else {
         passwordResetMessage.innerText = 'Your password reset email has been sent successfully.';
         passwordResetMessage.style.color = 'green';
+        passwordResetMessage.style.fontWeight = 'bold';
 
-        // Esconde a área de reset depois de 2s e limpa
         setTimeout(() => {
             passwordResetContainer.classList.add('hidden');
             passwordResetMessage.innerText = '';
@@ -102,4 +161,19 @@ passwordResetSubmit.addEventListener('click', (event) => {
 
         return true;
     }
+});
+
+newAccount.addEventListener('click', (e) => {
+    e.preventDefault();
+    form.hidden = true;
+    formRegister.hidden = false;
+});
+
+backToLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    formRegister.hidden = true;
+    form.hidden = false;
+
+    successMessage.innerText = '';
+    successMessage.classList.remove('showMessage');
 });
