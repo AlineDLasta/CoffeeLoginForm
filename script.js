@@ -79,7 +79,6 @@ function handleSubmit(event) {
         successMessage.innerText = '';
 
         if (!userText){
-            successMessage.innerText = 'You dont have an account yet. Sign up first!';
             successMessage.classList.add('showMessage');
             successMessage.style.color = 'red';
             return;
