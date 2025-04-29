@@ -56,7 +56,7 @@ function validatePassword(inputElement, errorElement) {
         errorElement.innerText = 'Please fill in the password field.';
         return false;
     } else if (passwordValue.length < 6) {
-        errorElement.innerText = 'Your password must be at least 6 digits long!';
+        errorElement.innerText = 'minimum password of 6 digits!';
         return false;
     } else {
         errorElement.innerText = '';
@@ -77,6 +77,13 @@ function handleSubmit(event) {
     } else {
         const userText = localStorage.getItem('user');
         successMessage.innerText = '';
+
+        if (!userText){
+            successMessage.innerText = 'minimum password of 6 digits!';
+            successMessage.classList.add('showMessage');
+            successMessage.style.color = 'red';
+            return;
+        }
 
         const userObj = JSON.parse(userText);
         if (emailInput.value === userObj.email && passwordInput.value === userObj.password){
