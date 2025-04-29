@@ -128,6 +128,13 @@ function handleRegister(event) {
         setTimeout(() => {
             successRegisterMessage.classList.remove('showMessage');
             successRegisterMessage.innerText = '';
+
+            formRegister.hidden = true;
+            form.hidden = false;
+            userRegister.innerText = '';
+            emailRegister.innerText = '';
+            passwordRegister.innerText = '';
+
         }, 2000);
     } 
 }
@@ -181,3 +188,8 @@ backToLogin.addEventListener('click', (e) => {
     successMessage.innerText = '';
     successMessage.classList.remove('showMessage');
 });
+
+
+function createPassword(){
+    document.getElementById('')
+}

@@ -33,18 +33,26 @@
 
 .nav a:hover {
     cursor: pointer;
+    border-bottom: 2px solid #ffffff; /* ou a cor que quiser */
 }
+
+
+.nav a:hover::after {
+    width: 100%;
+  }
+  
 
 .home {
     width: 100vw;
     min-height: 100vh;
-    background-image: url(coffee.jpg);
+    background-image: url(Coffee.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
+    gap: 40px;
     justify-content: space-between;
     align-items: center;
-    padding: 70px 100px 0;
+    padding: 70px 150px 0;
 }
 
 .home .content {
@@ -210,16 +218,19 @@ input::placeholder {
 }
 
 
-@media (max-width: 1024px) {
+@media (max-width: 1300px) {
     .header {
-        padding: 20px 50px;
+        padding: 20px;
     }
+
 
     .home {
         flex-direction: column;
         text-align: center;
         gap: 30px;
-        padding: 70px 50px 0;
+        padding: 70px 50px;
+        padding-top: 12%;
+        
     }
 
     .home .login-box {
@@ -228,7 +239,7 @@ input::placeholder {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 620px) {
 
     html,
     body {
@@ -254,16 +265,22 @@ input::placeholder {
         font-size: 1em;
     }
 
+    .nav a:hover {
+        border: none;
+    }
+
     .home {
-        padding: 85px
+        padding: 100px;
+        background-image:url(YCoffee.jpg);
     }
 
     .content h2 {
         font-size: 2.2em;
+        padding-bottom: 20px;
     }
 
     .content p {
-        font-size: 1em;
+        display: none;
     }
 
     .content a {
@@ -275,12 +292,22 @@ input::placeholder {
     .home .login-box {
         width: 100%;
         max-width: 100%;
+        
     }
 }
 
 @media (max-width: 400px) {
     .header .logo {
         font-size: 1.2em;
+    }
+
+    .nav a:hover {
+        border: none;
+    }
+
+    .home {
+        padding: 100px;
+        background-image: url(YCoffee.jpg);
     }
 
     .content h2 {
@@ -295,6 +322,7 @@ input::placeholder {
         height: 45px;
         margin: 30px 0;
     }
+    
 
     .input-box i {
         font-size: 1em;
