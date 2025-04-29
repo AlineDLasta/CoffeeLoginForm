@@ -45,7 +45,7 @@
 .home {
     width: 100vw;
     min-height: 100vh;
-    background-image: url(img/Coffee.jpg);
+    background-image: url(YCoffeeX.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -271,7 +271,7 @@ input::placeholder {
 
     .home {
         padding: 100px;
-        background-image:url(img/YCoffee.jpg);
+        background-image:url(YCoffee.jpg);
     }
 
     .content h2 {
@@ -307,7 +307,7 @@ input::placeholder {
 
     .home {
         padding: 100px;
-        background-image: url(img/YCoffee.jpg);
+        background-image: url(YCoffee.jpg);
     }
 
     .content h2 {
