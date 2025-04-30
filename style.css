@@ -134,7 +134,7 @@ input::placeholder {
     margin: -25px 0 15px;
     display: flex;
     justify-content: space-between;
-    padding-top: 15px;
+    padding-top: 30px;
 }
 
 .remember-forgot label input {
@@ -295,7 +295,7 @@ input::placeholder {
         max-width: 100%;
         
     }
-
+    
 }
 
 @media (max-width: 400px) {
@@ -341,7 +341,4 @@ input::placeholder {
         font-size: 0.9em;
     }
 
-    .remember-forgot{
-        padding-top: 30px;
-    }
 }
