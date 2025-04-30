@@ -294,6 +294,10 @@ input::placeholder {
         max-width: 100%;
         
     }
+
+    .remember-forgot{
+        padding-top: 15px;
+    }
 }
 
 @media (max-width: 400px) {
