@@ -340,4 +340,8 @@ input::placeholder {
     .login-box .but {
         font-size: 0.9em;
     }
+
+    .remember-forgot{
+        padding-top: 20px;
+    }
 }
